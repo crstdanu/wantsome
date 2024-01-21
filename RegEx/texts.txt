@@ -1,0 +1,52 @@
+match() - looks for patterns ONLY at the beginng of the string
+
+search() - looks for ANY location (not only the first)
+    - shows only THE FIRST find
+    - after the first find it stops looking
+
+findall() - re.findall() returns ALL the matches
+    -returns an object
+
+finditer(pattern) - takes argument a variable object ( pattern = re.compile(r"abc"))
+    -shows ALL the objects that match the pattern
+
+
+    object
+
+match.start() - prints the starting index of the match
+match.end() - prints the ending index of the match
+match.span() - (intinderea) prints a tuple with the start and end index
+match.group() - prints the actual item (abc)
+match.group(1) -> prints the first find
+
+meta characters: . ^ $ * + ? { } [ ] \ | ( ) - 14 characters
+    - characters with a spectal meaning
+
+. Any character (except newline character) "he..o"
+^ Starts with "^hello"
+\$ Ends with "world\$"
+
+* Zero or more occurrences "aix*"
++ One or more occurrences "aix+"
+{ } Exactly the specified number of occurrences "al{2}"
+    {4,6} - minimum 4 characters -> maximum 6 characters
+? 0 or 1 -> when we're looking for an optional character
+    - a character that might or might not be there
+[] A set of characters "[a-m]"
+\ Signals a special sequence (can also be used to escape special characters) "\d"
+| Either or "falls|stays"
+( ) Capture and group
+
+
+more special characters
+
+\d : Matches any decimal digit; this is equivalent to the class [0-9].
+\D : Matches any non-digit character; this is equivalent to the class [^0-9].
+\s : Matches any whitespace character;
+\S : Matches any non-whitespace character;
+\w : Matches any alphanumeric (word) character; this is equivalent to the class [a-zA-Z0-9_].
+\W : Matches any non-alphanumeric character; this is equivalent to the class [^a-zA-Z0-9_].
+\b Returns a match where the specified characters are at the beginning or at the end of a word r"\bain" r"ain\b"
+\B Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word r"\Bain" r"ain\B"
+\A Returns a match if the specified characters are at the beginning of the string "\AThe"
+\Z Returns a match if the specified characters are at the end of the string "Spain\Z"

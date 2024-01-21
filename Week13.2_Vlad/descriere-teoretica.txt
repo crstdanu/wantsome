@@ -1,0 +1,18 @@
+1. trebuie sa recunosc dimensiunea matricilor
+2. as folosi doar reprezentare sub forma de lista
+3. fac interesectia la 2 elemente de tip multime
+   dar transformandu-le intai in numere
+4. am nevoie de 2 functii
+   - conversie multime text la nr
+   - conversie numar la multime text   
+
+10 cifre = 10 bytes
+10 * 32 + 9 + 2 = 320 + 11 = 331
+5000*5000 = 25.000.000 * 331
+--------------------------------> 7.7GB * 3 = 23GB
+
+{256,1,8,2,4}
+4 bytes (32/8)
+
+4*5000*5000=100.000.000 * 3 = 286MB
+--------------------------------->

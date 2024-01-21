@@ -1,0 +1,10 @@
+import math
+
+Q = []
+for i in range(20):
+    x = 7**i
+    rx = str(x)
+    Q = Q + [int(rx[-1])]
+
+
+print(Q)

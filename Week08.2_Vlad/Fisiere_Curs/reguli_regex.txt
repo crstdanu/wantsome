@@ -1,0 +1,17 @@
+^ - primul caracter
+$ - ultimul caracter
+\ - escape la caractere speciale
+\d - orice cifra
+\s - spatiu
+?  - orice caracter
+[a-z] - alfabetul format din litere lowcase
+[a-zA-Z] - alfabet format din toate caracterele mici si mari
+[a-zA-Z0-9]
+{} - cate caractere sa corespunda cu regula
+[0-9]{3,10}
+| - sau
++ - extinde pentru un numar nelimitat de elemente, cel putin 1
+[0-9]+  echivalent \d+
+* - extinde pentru un numar nelimitat de elemente, cel putin 0
+.+ - orice de aici in colo, cel putin 1
+.* - orice de aici in colo, cel putin 0

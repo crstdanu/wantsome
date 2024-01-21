@@ -1,0 +1,51 @@
+0-9
+
+4 cifre -> size=8999
+
+4 caractere folosind dictionarul '0'-'9'
+4 caractere -> size=10000
+
+a-z
+2 caractere -> size = 26^2 = 676
+4 caractere -> size = 26^4 = .....
+elementul i in secventa de cuvinte cu 4 caractere
+i=0  -> aaaa
+i=5  -> aaaf
+i=27 -> aabb
+
+------------------------------
+26^6 = 308915776
+
+a-zA-Z0-9
+2 caractere -> size = 62^2
+4 caractere -> size = 62^4
+
+aaaa
+aabb
+
+i = 27
+-----------------------
+i=4512 (0-9)
+
+4 = (4512//10^3)%10
+5 = (4512//10^2)%10
+1 = (4512//10^1)%10
+2 = (4512//10^0)%10
+
+i=27 = "aabb"
+l = []
+K = indexul_din_spatiu
+n - nr caractere
+	
+	'a'=(27//26^3)%26 + 'a'
+	'a'=(27//26^2)%26 + 'a'
+	'b'=(27//26^1)%26 + 'a'
+	'b'=(27//26^0)%26 + 'a'
+	
+54 'aacc'
+
+i=1021
+'a'
+'b'
+'n'
+'h'

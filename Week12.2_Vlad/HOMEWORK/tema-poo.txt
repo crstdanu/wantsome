@@ -1,0 +1,14 @@
+1. Creati relatia corecta dintre urmatoarele obiecte:
+   asezare, sat, oras, judet, capitala, comuna, tara
+
+2. Scrieti o aplicatie python care, pornind de la dependintele descrise la 1, sa permita descrierea unor tari.
+   Clasele vor avea ca proprietati doar numele ca string daca e cazul si eventual o colectie de alte obiecte pe care le include
+   Ar trebui sa putem:
+   - adauga obiecte in colectia obiectului curent
+   - afisa colectia de obiecte si tipul acestora
+   - afisa colectia de obiecte care corespund unui tip anume (oras, comuna, .....)
+   - cauta un anume obiect intr-o tara
+
+
+asezare --> sat --> comuna --> oras --> judet --> tara
+asezare                              capitala -->

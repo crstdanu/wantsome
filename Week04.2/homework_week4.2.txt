@@ -1,0 +1,36 @@
+1.a. Arhivare
+
+Scrieti un program Python care sa "arhiveze" un sir de caractere de forma:
+
+AAAABBBAAACCCCCDAAB
+
+Forma arhivata care reiese va fi reprezentata de un sir de caractere care sa contina:
+ - numarul de aparitii al urmatorrului caracter
+ - caracterul respectiv
+
+Pentru exemplul anterior, acest sir de caractere va fi:
+
+4A3B3A5C1D2A1B
+
+1.b. Dezarhivare
+
+Scrieti un program Python care sa "dezarhiveze" un sir de caractere, metoda inversa fata de 1.a.
+
+Exemplu: 4A3B3A5C1D2A1B -> 4A3B3A5C1D2A1B
+
+2. Tabla inmultirii
+Scrieti un program care sa afiseze tabla inmultirii sub forma unei matrici (lista de liste):
+[[1  2  3  4  5  6  7  8  9]
+ [2  4  6  8 10 12 14 16 18]
+ [3  6  9 12 15 18 21 24 27]
+ [4  ...                   ]  
+ [5  ...                   ]
+ [6  ...                   ]
+ [7  ...                   ]
+ [8  ...                   ]
+ [9  ...                   ]]
+
+3. Scrieti un program Python care sa determine toate numerele de 5 cifre (de forma ABCDE) cu proprietatea ca A + B = D - E.
+
+3.a: Afisati numerele in ordine crescatoarea
+3.b: Afisati numerele in ordine descrescatoare

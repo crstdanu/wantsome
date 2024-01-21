@@ -1,0 +1,102 @@
+Labirint
+
+Descriere labirint:
+Un labirint este format dintr-o matrice NxN, unde N este impar
+O matrice contine urmatoarele caractere:
+'#' - zid
+'.' - spatiu liber
+'S' - pozitia de start
+'X' - pozitia destiantie
+
+Solutia unui labirint este data de o insiruire de caractere "UDLR":
+U: UP
+D: DOWN
+L: LEFT
+R: RIGHT
+
+De exemplu solutia urmatorului labirint este: "DDDLL" deorece S poate ajunge la X (in numarul cel mai mic de pasi) doar prin acesti pasi, o solutia mai complicata si ne-acceptata ar mai fi "DDDRRLLLL"
+#######
+#..#..#
+#.#S.##
+#.#...#
+#.#.###
+#X....#
+#######
+
+Este garantat faptul ca orice labirint are fie o solutie unica, fie mai multe solutii astfel incat 2 solutii nu au aceeasi dimensiune.
+Astfel ca urmatorul labirint este invalid deoarece are 2 solutii identice ca dimensiune: "LDDR" si "RDDL"
+#####
+#.S.#
+#.#.#
+#.X.#
+#####
+
+Rezolvrea unei provocari presupune de fapt rezolvarea a 8 labirinte diferite, toate avand aceleasi dimensiuni
+Labirintele se afla in fisiere cu numele "in_k.bin" unde k este indexul labirintului 0<=k<=7
+Rezolvarea labirintului k va produce fisierul "out_k.bin" care va contine secventa de pasi pentru ca S sa ajunga peste X
+Implementarea se face strict x86 (32 bit indiferent de limbajul folosit), fara a customiza partea de linkare (fortarea aplicatiilor pe 32 biti sa utilizeze >2GB RAM), este permisa totusi folosirea optimizarilor de compilare daca simtiti ca sunt necesare
+Pentru rezolvarea problemelor 1,2,3 se va introduce un parametru suplimentar "1". De exemplu daca aplicatia se numeste "labirint.exe", rezolvarea problemelor 1,2,3 trebuie sa inceapa cu executia liniei de comanda: "labirint.exe 1" iar 8 labirinte de intrare trebuie sa se afla in acelasi folder cu executabilul
+Problema 4 nu o puteti rezolva cu solverul, dar solverul poate sa va ajute sa verificati ca drumul pe care mergeti este ok
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+Probleme de rezolvat:
+Pentru primele 3 probleme, solutia este garantat unica, pentru problema 4, solutia este garantat multipla asa cum s-a descris mai sus.
+
+1. Sa se rezolve corect labirinte cu dimensiuni impare intre N=7 si N=21   (1p)
+
+2. Sa se rezolve corect labirinte cu dimensiuni impare cu dimensiuni de pana la N=101   (1.5p)
+
+3. Sa se rezolve corect o serie de labirinte date (N=2401 maxim)
+   - seriile pentru problema 3 sunt in folderul proiectului (301,501,701,1001,1501,2001,2401)  (2.5p) 
+
+4. Sa se rezolve urmatoarea provocare:  (5p)
+   - Se dau 8 serii a cate 8 labirinte fiecare (8x8=64 de labirinte)
+     - in orice serie, labirintele au N acelasi (de exemplu seria 4 are toate labirintele de acelasi size NxN)
+     - intre serii N este diferit (pentru ca difera complexitatea), iar o serie cu index mai mare, are N mai mare
+   - in toate seriile, doar primul labirint din prima serie este plain-text, celelalte sunt criptate
+   - fata de problemele 1,2,3 care aveau soltuie unica, de data asta este garantat faptul ca labirintele au solutie multipla si nu exista 2 solutii cu aceeasi dimensiune
+   - cheia de criptare a labirintului k, k>1 este CRC32(Solutie(k-1)) unde Solutie(k-1) se refera la continutul fisierului out_k-1.bin
+   - pentru verificare CRC32, se poate folosi si GVIEW, hash-ul ar trebui sa fie echivalent cu CRC32(-1)
+     Ex: CRC32 pentru sirul de caractere "RRRDDDDLLUU" este 0549A1B6 (doar ceea ce se afla intre "")
+   - pentru testare se poate folosi parametrul encrypt pe un labirint decriptat, pentru a vedea ca rezultatul criptarii este acelasi cu cel de dinainte de decriptare; utilizarea repatata a functiei de criptare face cand criptare, cand decriptare pentru ca functia de criptare este simetrica
+   - labirintul in_0.bin din seria 1 se decripteaza cu cheia obtinuta pentru out_7.bin din seria 0  
+   - cheia obtinuta pentru out_7.bin din ultima serie, este parola de dezarhivare a unei carti arhivate zip, cu parola
+   - algoritmul de criptare folosit este RC4, iar cheile de criptare sunt valori hex CRC32 cu size 8, in format ASCII
+   - in caz ca primele cifre ale hash-ului incep cu 0, dimensiunea finala tot 8 va fi: 0x0007FA14 = "0007FA14"
+   - deoarece labirintele au solutie multipla, solutia acceptata este cea cu dimensiunea cea mai mica:
+     intre solutiile "LDDDR", "LLDDDRR" si "RURDDDDDLUL", solutia acceptata este "LDDDR" pentru ca este cea mai mica
+
+   Langa aplicatie, fisierele de intrare vor fi organizate in 8 foldere pentru problema 4:
+   1_21
+   2_101
+   3_301
+   4_501
+   5_1001
+   6_1501
+   7_2001
+   8_2401
+
+   Pe langa aceste foldere exista si cartea arhivata zip si protejata cu parola
+   Parola care se potriveste la arhiva este hash-ul CRC32 pentru fisierul out_7.bin din folderul 8_2401
+
+
+parametri suportati:
+make  N       --> genereaza labirinte de dimensiuni NxN, unde N este impar; daca este par atunci N=N-1
+solve 1       --> rezolva labirintele in_0.bin ... in_7.bin, acestea fiind plain-text
+hash  k       --> afiseaza hash-ul pe care il produce aolutia out_k.bin
+crypt k       --> cripteaza/decripteaza labirintul k [in_k.bin] folosind solutia de la labirintul k-1 [out_(k-1).bin];
+                  nu puteti folosi acest parametru daca k=0
+                  in caz ca doriti sa testati pe k=0 de la seria i >= 1, atunci trebuie sa copiati intr-un folder solutia 7 de la seria i-1 si sa rulati acolo
+crypt2 k KEY  --> cripteaza/decripteaza labirintul k, folosind cheia ASCII KEY in format base16 upcase (Ex: 5A9F321E)
+                  aici puteti folosi k=0 in caz ca KEY provine de la labirintul 7 din seria anterioara
+apply k       --> aplica solutia out_k.bin peste in_k.bin si genereaza trace_k.bin care contine marcat traseul prin care S ajunge la X
+                  fisierele in_k.bin/out_k.bin trebuie sa existe
+                  acest parametru se utilizeaza cu labirinte mici care pot fi afisate in consola
+check app.exe --> verifica corectitudinea solutiilor - pentru problemele 1,2,3. Ultima problema nu are nevoie de checker
+
+
+Punctajul il obtineti doar rezolvand ultima problema folosind formula if (timpul_tau_secunde < 3h) then (11000 - timpul_tau_secunde) else 0
+Primele 3 puncte se considera antrenament pentru problema 4 pentru ca seturile de date sunt similare intre problemele 1-3 si 4
+
+Warning:  ULTIMA PROBLEMA (4) SE POATE REZOLVA IN 4 MODURI DIFERITE, aveti voie sa faceti reverse aplicatiei, sa trisati cum stiti mai bine, sa utilizati algoritmi publici ...............
+

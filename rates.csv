@@ -1,0 +1,17 @@
+source currency,target_currency,rate
+USD,EUR,0.93
+USD,RON,4.6
+USD,GBP,0.8
+USD,USD,1
+EUR,USD,1.08
+EUR,GBP,0.86
+EUR,RON,4.97
+EUR,EUR,1
+GBP,EUR,1.16
+GBP,USD,1.26
+GBP,RON,5.79
+GBP,GBP,1
+RON,USD,0.22
+RON,EUR,0.2
+RON,GBP,0.17
+RON,RON,1
